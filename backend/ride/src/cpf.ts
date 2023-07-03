@@ -32,7 +32,7 @@ function isValidCpf(cpf: string): boolean {
         rest = (d2 % 11);
         dg2 = rest < 2 ? 0 : 11 - rest;
 
-        let nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
+        const nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
         const nDigResult = "" + dg1 + "" + dg2;
         return nDigVerific == nDigResult;
     } catch (e) {
