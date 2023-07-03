@@ -26,18 +26,11 @@ export function validate (str) {
         d1 = d2 = 0;
         dg1 = dg2 = rest = 0;
 
-        for (let nCount = 1; nCount < str.length - 1; nCount++) {
-            // if (isNaN(parseInt(str.substring(nCount -1, nCount)))) {
-            // 	return false;
-            // } else {
-
-            digito = parseInt(str.substring(nCount - 1, nCount));
-            d1 = d1 + (11 - nCount) * digito;
-
-            d2 = d2 + (12 - nCount) * digito;
-            // }
+        for (let nCount = 0; nCount < str.length - 2; nCount++) {
+            digito = parseInt(str.substring(nCount, nCount + 1));
+            d1 = d1 + (10 - nCount) * digito;
+            d2 = d2 + (11 - nCount) * digito;
         }
-        ;
 
         rest = (d1 % 11);
 
