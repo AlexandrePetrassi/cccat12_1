@@ -21,6 +21,12 @@ function calculateD2(d2: number, dg1: number): number {
     return rest2 < 2 ? 0 : 11 - rest2;
 }
 
+function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
+    const nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
+    const nDigResult = "" + dg1 + "" + dg2;
+    return nDigVerific == nDigResult;
+}
+
 function isValidCpf(cpf: string): boolean {
     try {
         let d1 = 0;
@@ -32,13 +38,10 @@ function isValidCpf(cpf: string): boolean {
             d2 = d2 + (11 - nCount) * digito;
         }
 
-        const dg1 = calculateD1(d1)
+        const dg1 = calculateD1(d1);
+        const dg2 = calculateD2(d2, dg1);
+        return compareDigitsWithCpf(dg1, dg2, cpf);
 
-        const dg2 = calculateD2(d2, dg1)
-
-        const nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
-        const nDigResult = "" + dg1 + "" + dg2;
-        return nDigVerific == nDigResult;
     } catch (e) {
         console.error("Erro !" + e);
 
