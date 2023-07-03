@@ -16,7 +16,6 @@ function isValidCpf(cpf: string): boolean {
         let d1, d2;
         let dg1, dg2, rest;
         let digito;
-        let nDigResult;
         d1 = d2 = 0;
         dg1 = dg2 = rest = 0;
 
@@ -34,7 +33,7 @@ function isValidCpf(cpf: string): boolean {
         dg2 = rest < 2 ? 0 : 11 - rest;
 
         let nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
-        nDigResult = "" + dg1 + "" + dg2;
+        const nDigResult = "" + dg1 + "" + dg2;
         return nDigVerific == nDigResult;
     } catch (e) {
         console.error("Erro !" + e);
