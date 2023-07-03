@@ -11,13 +11,7 @@ function filterOnlyNumbers(str: string): string {
         .replace(" ", "");
 }
 
-export function validate (str) {
-    if (!str) return false
-    str = filterOnlyNumbers(str)
-    if (str.length !== 11) return false
-
-    if (isEveryCharTheSame(str)) return false;
-
+function isValidCpf(cpf: string): boolean {
     try {
         let d1, d2;
         let dg1, dg2, rest;
@@ -26,8 +20,8 @@ export function validate (str) {
         d1 = d2 = 0;
         dg1 = dg2 = rest = 0;
 
-        for (let nCount = 0; nCount < str.length - 2; nCount++) {
-            digito = parseInt(str.substring(nCount, nCount + 1));
+        for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
+            digito = parseInt(cpf.substring(nCount, nCount + 1));
             d1 = d1 + (10 - nCount) * digito;
             d2 = d2 + (11 - nCount) * digito;
         }
@@ -42,7 +36,7 @@ export function validate (str) {
         else
             dg2 = 11 - rest;
 
-        let nDigVerific = str.substring(str.length - 2, str.length);
+        let nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
         nDigResult = "" + dg1 + "" + dg2;
         return nDigVerific == nDigResult;
     } catch (e) {
@@ -50,4 +44,14 @@ export function validate (str) {
 
         return false;
     }
+}
+
+export function validate (str) {
+    if (!str) return false
+    str = filterOnlyNumbers(str)
+    if (str.length !== 11) return false
+
+    if (isEveryCharTheSame(str)) return false;
+
+    return isValidCpf(str)
 }
