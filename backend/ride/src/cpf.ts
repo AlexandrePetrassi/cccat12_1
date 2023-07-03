@@ -48,10 +48,10 @@ function isValidCpf(cpf: string): boolean {
 
 export function validate (str) {
     if (!str) return false
-    str = filterOnlyNumbers(str)
-    if (str.length !== 11) return false
+    const cpf = filterOnlyNumbers(str)
+    if (cpf.length !== 11) return false
 
-    if (isEveryCharTheSame(str)) return false;
+    if (isEveryCharTheSame(cpf)) return false;
 
-    return isValidCpf(str)
+    return isValidCpf(cpf)
 }
