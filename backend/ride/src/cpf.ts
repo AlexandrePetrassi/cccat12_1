@@ -14,9 +14,8 @@ function filterOnlyNumbers(str: string): string {
 function isValidCpf(cpf: string): boolean {
     try {
         let d1, d2;
-        let dg1, dg2, rest;
         d1 = d2 = 0;
-        dg1 = dg2 = rest = 0;
+        let rest = 0;
 
         for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
             const digito = parseInt(cpf.substring(nCount, nCount + 1));
@@ -26,10 +25,10 @@ function isValidCpf(cpf: string): boolean {
 
         rest = (d1 % 11);
 
-        dg1 = (rest < 2) ? 0 : 11 - rest;
+        const dg1 = (rest < 2) ? 0 : 11 - rest;
         d2 += 2 * dg1;
         rest = (d2 % 11);
-        dg2 = rest < 2 ? 0 : 11 - rest;
+        const dg2 = rest < 2 ? 0 : 11 - rest;
 
         const nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
         const nDigResult = "" + dg1 + "" + dg2;
