@@ -13,8 +13,8 @@ function filterOnlyNumbers(str: string): string {
 
 function isValidCpf(cpf: string): boolean {
     try {
-        let d1, d2;
-        d1 = d2 = 0;
+        let d1 = 0;
+        let d2 = 0;
 
         for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
             const digito = parseInt(cpf.substring(nCount, nCount + 1));
