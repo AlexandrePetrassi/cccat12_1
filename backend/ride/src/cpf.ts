@@ -11,6 +11,11 @@ function filterOnlyNumbers(str: string): string {
         .replace(" ", "");
 }
 
+function calculateD1(d1: number): number {
+    const rest = (d1 % 11);
+    return (rest < 2) ? 0 : 11 - rest;
+}
+
 function isValidCpf(cpf: string): boolean {
     try {
         let d1 = 0;
@@ -22,8 +27,7 @@ function isValidCpf(cpf: string): boolean {
             d2 = d2 + (11 - nCount) * digito;
         }
 
-        const rest = (d1 % 11);
-        const dg1 = (rest < 2) ? 0 : 11 - rest;
+        const dg1 = calculateD1(d1)
 
         const rest2 = ((d2 + 2 * dg1) % 11);
         const dg2 = rest2 < 2 ? 0 : 11 - rest2;
