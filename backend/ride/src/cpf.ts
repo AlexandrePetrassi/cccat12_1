@@ -13,8 +13,8 @@ function filterOnlyNumbers(str: string): string {
 
 export function validate (str) {
     if (!str) return false
-    if (str.length < 11 || str.length > 14) return false
     str = filterOnlyNumbers(str)
+    if (str.length !== 11) return false
 
     if (isEveryCharTheSame(str)) return false;
 
