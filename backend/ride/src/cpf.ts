@@ -26,7 +26,7 @@ function isValidCpf(cpf: string): boolean {
 
         rest = (d1 % 11);
 
-        dg1 = (rest < 2) ? dg1 = 0 : 11 - rest;
+        dg1 = (rest < 2) ? 0 : 11 - rest;
         d2 += 2 * dg1;
         rest = (d2 % 11);
         dg2 = rest < 2 ? 0 : 11 - rest;
