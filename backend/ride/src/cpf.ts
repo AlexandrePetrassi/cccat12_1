@@ -22,9 +22,7 @@ function calculateD2(d2: number, dg1: number): number {
 }
 
 function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
-    const nDigVerific = cpf.substring(cpf.length - 2, cpf.length);
-    const nDigResult = "" + dg1 + "" + dg2;
-    return nDigVerific == nDigResult;
+    return cpf.slice(-2) == '' + dg1 + dg2;
 }
 
 function isValidCpf(cpf: string): boolean {
