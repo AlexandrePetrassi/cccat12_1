@@ -3,14 +3,18 @@ function isEveryCharTheSame(str: string): boolean {
     return str.split("").every(c => c === str[0]);
 }
 
-export function validate (str) {
-    if (!str) return false
-    if (str.length < 11 || str.length > 14) return false
-    str = str
+function filterOnlyNumbers(str: string): string {
+    return str
         .replace('.', '')
         .replace('.', '')
         .replace('-', '')
         .replace(" ", "");
+}
+
+export function validate (str) {
+    if (!str) return false
+    if (str.length < 11 || str.length > 14) return false
+    str = filterOnlyNumbers(str)
 
     if (isEveryCharTheSame(str)) return false;
 
