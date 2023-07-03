@@ -15,12 +15,11 @@ function isValidCpf(cpf: string): boolean {
     try {
         let d1, d2;
         let dg1, dg2, rest;
-        let digito;
         d1 = d2 = 0;
         dg1 = dg2 = rest = 0;
 
         for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
-            digito = parseInt(cpf.substring(nCount, nCount + 1));
+            const digito = parseInt(cpf.substring(nCount, nCount + 1));
             d1 = d1 + (10 - nCount) * digito;
             d2 = d2 + (11 - nCount) * digito;
         }
