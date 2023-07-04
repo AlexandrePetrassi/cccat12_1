@@ -28,9 +28,13 @@ function calculateDigit(digits: number[], factor: number, previousDigit: number 
     return rest < 2 ? 0 : 11 - rest;
 }
 
+function cpfToDigits(cpf: string): number[] {
+    return cpf.split("").slice(0, -2).map(it => parseInt(it));
+}
+
 function isValidCpf(cpf: string): boolean {
     if (!isLengthValid(cpf) || isEveryCharTheSame(cpf)) return false
-    const digits = cpf.split("").slice(0, -2).map(it => parseInt(it))
+    const digits = cpfToDigits(cpf);
     const firstDigit = calculateDigit(digits, 10);
     const secondDigit = calculateDigit(digits, 11, firstDigit);
     return compareDigitsWithCpf(firstDigit, secondDigit, cpf);
