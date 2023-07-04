@@ -24,7 +24,13 @@ function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
     return cpf.slice(-2) == '' + dg1 + dg2;
 }
 
+function isLengthValid(cpf: string) {
+    return cpf.length === 11;
+}
+
 function isValidCpf(cpf: string): boolean {
+    if (!isLengthValid(cpf) || isEveryCharTheSame(cpf)) return false
+
     let d1 = 0;
     let d2 = 0;
 
@@ -40,10 +46,5 @@ function isValidCpf(cpf: string): boolean {
 }
 
 export function validate (str: string) {
-    const cpf = filterOnlyNumbers(str)
-    if (cpf.length !== 11) return false
-
-    if (isEveryCharTheSame(cpf)) return false;
-
-    return isValidCpf(cpf)
+    return isValidCpf(filterOnlyNumbers(str))
 }
