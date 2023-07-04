@@ -10,6 +10,15 @@ function calculateDigit(digits: number[], factor: number, previousDigit: number 
     return rest < 2 ? 0 : 11 - rest;
 }
 
+function verifyDigits(digits: number[]): boolean {
+    const verifiableDigits = digits.slice(0, -2)
+    const givenVerifierDigits = digits.slice(-2);
+    const firstDigit = calculateDigit(verifiableDigits, 10);
+    const secondDigit = calculateDigit(verifiableDigits, 11, firstDigit);
+    const calculatedVerifierDigits = [firstDigit, secondDigit]
+    return givenVerifierDigits.toString() === calculatedVerifierDigits.toString()
+}
+
 export function validate (str: string) {
     return new Cpf(str).isValid
 }
@@ -27,31 +36,6 @@ export class Cpf {
     }
 
     @LazyGetter()
-    private get verifiableDigits(): number[] {
-        return this.digits.slice(0, -2)
-    }
-
-    @LazyGetter()
-    private get givenVerifierDigits(): number[] {
-        return this.digits.slice(-2);
-    }
-
-    @LazyGetter()
-    private get firstDigit(): number {
-        return calculateDigit(this.verifiableDigits, 10);
-    }
-
-    @LazyGetter()
-    private get secondDigit(): number {
-        return calculateDigit(this.verifiableDigits, 11, this.firstDigit);
-    }
-
-    @LazyGetter()
-    private get calculatedVerifierDigits(): number[] {
-        return [this.firstDigit, this.secondDigit]
-    }
-
-    @LazyGetter()
     get isLengthValid() {
         return this.digits.length === 11;
     }
@@ -63,7 +47,7 @@ export class Cpf {
 
     @LazyGetter()
     get areVerifierDigitsValid(): boolean {
-        return this.givenVerifierDigits.toString() === this.calculatedVerifierDigits.toString()
+        return verifyDigits(this.digits)
     }
 
     @LazyGetter()
