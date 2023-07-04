@@ -19,23 +19,13 @@ function isLengthValid(cpf: string) {
 }
 
 function calculateFirstDigit(digits: number[]) {
-    let d1 = 0;
-
-    digits.forEach((digito, nCount) => {
-        d1 = d1 + (10 - nCount) * digito;
-    })
-
+    let d1 = digits.reduce((prev, next, nCount) => prev + (10 - nCount) * next, 0)
     const rest = (d1 % 11);
     return (rest < 2) ? 0 : 11 - rest;
 }
 
 function calculateSecondDigit(digits: number[], d1: number) {
-    let d2 = 0;
-
-    digits.forEach((digito, nCount) => {
-        d2 = d2 + (11 - nCount) * digito;
-    })
-
+    let d2 = digits.reduce((prev, next, nCount) => prev + (11 - nCount) * next, 0)
     const rest2 = ((d2 + 2 * d1) % 11);
     return rest2 < 2 ? 0 : 11 - rest2;
 }
