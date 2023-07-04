@@ -47,7 +47,6 @@ function isValidCpf(cpf: string): boolean {
 }
 
 export function validate (str: string) {
-    if (!str) return false
     const cpf = filterOnlyNumbers(str)
     if (cpf.length !== 11) return false
 
