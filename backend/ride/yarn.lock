@@ -2092,6 +2092,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+lazy-get-decorator@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/lazy-get-decorator/-/lazy-get-decorator-2.2.1.tgz#f8f69111974a60e38bda7293f1a078b80eea3aca"
+  integrity sha512-Z5uxqhXT+h3s1az3JaEAi9eh8+p4pIUE3qJGgfkx9zIEiA3bIpg4ChxODLwCpFr9S+PDEJ/2Q1UaMqy8RdVCxg==
+
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
