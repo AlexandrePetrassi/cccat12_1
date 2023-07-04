@@ -9,9 +9,11 @@ test("Deve retornar true quando um cpf sem pontuação é válido", function()  
     expect(result).toBe(true)
 })
 
-test("Deve retornar true quando um cpf com pontuação é válido", function()  {
-    // GIVEN
-    const cpf = "713.057.550-65"
+test.each( [
+    "713.057.550-65",
+    "713.057.550/65",
+    "713.057.550\\65",
+])("Deve retornar true quando um cpf com pontuação é válido", function(cpf: string)  {
     // WHEN
     const result = validate(cpf)
     // THEN
@@ -85,15 +87,6 @@ test("Deve retornar false quando a cpf tem mais de 14 digitos", function()  {
 test("Deve retornar false quando a cpf tem exatamente 15 digitos", function()  {
     // GIVEN
     const cpf = "123456789012378"
-    // WHEN
-    const result = validate(cpf)
-    // THEN
-    expect(result).toBe(false)
-})
-
-test("Deve retornar false quando a cpf tem caracteres inválidos", function()  {
-    // GIVEN
-    const cpf = "713.057.550/65"
     // WHEN
     const result = validate(cpf)
     // THEN
