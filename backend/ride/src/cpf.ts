@@ -31,7 +31,7 @@ export class Cpf {
     }
 
     @LazyGetter()
-    private get digits(): number[] {
+    get digits(): number[] {
         return this.raw.replace(/\D+/g, '').split("").map(it => parseInt(it));
     }
 
