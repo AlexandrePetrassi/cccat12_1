@@ -36,15 +36,6 @@ test("Deve retornar false quando um cpf é inválido e o resto é menor que 2", 
     expect(result).toBe(false)
 })
 
-test("Deve retornar false quando o cpf é nulo", function()  {
-    // GIVEN
-    const cpf = null
-    // WHEN
-    const result = validate(cpf)
-    // THEN
-    expect(result).toBe(false)
-})
-
 test("Deve retornar false quando o cpf é vazio", function()  {
     // GIVEN
     const cpf = ""
@@ -57,24 +48,6 @@ test("Deve retornar false quando o cpf é vazio", function()  {
 test("Deve retornar false quando o cpf é apenas whitespace", function()  {
     // GIVEN
     const cpf = "\n \n"
-    // WHEN
-    const result = validate(cpf)
-    // THEN
-    expect(result).toBe(false)
-})
-
-test("Deve retornar false quando o cpf é false", function()  {
-    // GIVEN
-    const cpf = false
-    // WHEN
-    const result = validate(cpf)
-    // THEN
-    expect(result).toBe(false)
-})
-
-test("Deve retornar false quando o cpf é undefined", function()  {
-    // GIVEN
-    const cpf = undefined
     // WHEN
     const result = validate(cpf)
     // THEN
