@@ -24,11 +24,8 @@ export function validate (str: string) {
 }
 
 export class Cpf {
-    private readonly raw: string;
 
-    constructor(rawCpf: string) {
-        this.raw = rawCpf
-    }
+    constructor(private readonly raw: string) {}
 
     @LazyGetter()
     get digits(): number[] {
