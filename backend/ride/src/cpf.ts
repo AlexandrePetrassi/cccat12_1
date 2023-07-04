@@ -1,4 +1,3 @@
-// @ts-nocheck
 function isEveryCharTheSame(str: string): boolean {
     return str.split("").every(c => c === str[0]);
 }
@@ -47,7 +46,7 @@ function isValidCpf(cpf: string): boolean {
     }
 }
 
-export function validate (str) {
+export function validate (str: string) {
     if (!str) return false
     const cpf = filterOnlyNumbers(str)
     if (cpf.length !== 11) return false
