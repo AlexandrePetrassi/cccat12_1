@@ -10,16 +10,6 @@ function filterOnlyNumbers(str: string): string {
         .replace(" ", "");
 }
 
-function calculateD1(d1: number): number {
-    const rest = (d1 % 11);
-    return (rest < 2) ? 0 : 11 - rest;
-}
-
-function calculateD2(d2: number, dg1: number): number {
-    const rest2 = ((d2 + 2 * dg1) % 11);
-    return rest2 < 2 ? 0 : 11 - rest2;
-}
-
 function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
     return cpf.slice(-2) == '' + dg1 + dg2;
 }
@@ -28,21 +18,35 @@ function isLengthValid(cpf: string) {
     return cpf.length === 11;
 }
 
-function isValidCpf(cpf: string): boolean {
-    if (!isLengthValid(cpf) || isEveryCharTheSame(cpf)) return false
-
+function calculateFirstDigit(cpf: string) {
     let d1 = 0;
-    let d2 = 0;
 
     for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
         const digito = parseInt(cpf.substring(nCount, nCount + 1));
         d1 = d1 + (10 - nCount) * digito;
+    }
+
+    const rest = (d1 % 11);
+    return (rest < 2) ? 0 : 11 - rest;
+}
+
+function calculateSecondDigit(cpf: string, d1: number) {
+    let d2 = 0;
+
+    for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
+        const digito = parseInt(cpf.substring(nCount, nCount + 1));
         d2 = d2 + (11 - nCount) * digito;
     }
 
-    const dg1 = calculateD1(d1);
-    const dg2 = calculateD2(d2, dg1);
-    return compareDigitsWithCpf(dg1, dg2, cpf);
+    const rest2 = ((d2 + 2 * d1) % 11);
+    return rest2 < 2 ? 0 : 11 - rest2;
+}
+
+function isValidCpf(cpf: string): boolean {
+    if (!isLengthValid(cpf) || isEveryCharTheSame(cpf)) return false
+    const d1 = calculateFirstDigit(cpf);
+    const d2 = calculateSecondDigit(cpf, d1);
+    return compareDigitsWithCpf(d1, d2, cpf);
 }
 
 export function validate (str: string) {
