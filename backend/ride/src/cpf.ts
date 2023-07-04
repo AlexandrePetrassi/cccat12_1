@@ -3,11 +3,7 @@ function isEveryCharTheSame(str: string): boolean {
 }
 
 function filterOnlyNumbers(str: string): string {
-    return str
-        .replace('.', '')
-        .replace('.', '')
-        .replace('-', '')
-        .replace(" ", "");
+    return str.replace(/\D+/g, '')
 }
 
 function compareDigitsWithCpf(firstDigit: number, secondDigit: number, cpf: string) {
