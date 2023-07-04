@@ -10,8 +10,8 @@ function filterOnlyNumbers(str: string): string {
         .replace(" ", "");
 }
 
-function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
-    return cpf.slice(-2) == '' + dg1 + dg2;
+function compareDigitsWithCpf(firstDigit: number, secondDigit: number, cpf: string) {
+    return cpf.slice(-2) == '' + firstDigit + secondDigit;
 }
 
 function isLengthValid(cpf: string) {
@@ -31,9 +31,9 @@ function calculateDigit(digits: number[], factor: number, previousDigit: number 
 function isValidCpf(cpf: string): boolean {
     if (!isLengthValid(cpf) || isEveryCharTheSame(cpf)) return false
     const digits = cpf.split("").slice(0, -2).map(it => parseInt(it))
-    const d1 = calculateDigit(digits, 10);
-    const d2 = calculateDigit(digits, 11, d1);
-    return compareDigitsWithCpf(d1, d2, cpf);
+    const firstDigit = calculateDigit(digits, 10);
+    const secondDigit = calculateDigit(digits, 11, firstDigit);
+    return compareDigitsWithCpf(firstDigit, secondDigit, cpf);
 }
 
 export function validate (str: string) {
