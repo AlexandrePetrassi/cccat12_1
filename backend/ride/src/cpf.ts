@@ -25,25 +25,18 @@ function compareDigitsWithCpf(dg1: number, dg2: number, cpf: string) {
 }
 
 function isValidCpf(cpf: string): boolean {
-    try {
-        let d1 = 0;
-        let d2 = 0;
+    let d1 = 0;
+    let d2 = 0;
 
-        for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
-            const digito = parseInt(cpf.substring(nCount, nCount + 1));
-            d1 = d1 + (10 - nCount) * digito;
-            d2 = d2 + (11 - nCount) * digito;
-        }
-
-        const dg1 = calculateD1(d1);
-        const dg2 = calculateD2(d2, dg1);
-        return compareDigitsWithCpf(dg1, dg2, cpf);
-
-    } catch (e) {
-        console.error("Erro !" + e);
-
-        return false;
+    for (let nCount = 0; nCount < cpf.length - 2; nCount++) {
+        const digito = parseInt(cpf.substring(nCount, nCount + 1));
+        d1 = d1 + (10 - nCount) * digito;
+        d2 = d2 + (11 - nCount) * digito;
     }
+
+    const dg1 = calculateD1(d1);
+    const dg2 = calculateD2(d2, dg1);
+    return compareDigitsWithCpf(dg1, dg2, cpf);
 }
 
 export function validate (str: string) {
