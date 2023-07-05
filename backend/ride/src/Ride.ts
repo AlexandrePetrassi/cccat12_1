@@ -12,10 +12,21 @@ export default class Ride {
 		this.segments.push(new Segment(distance, date));
 	}
 
+	ofSegment(segment: Segment): number {
+		for (const [condition, value] of this.fare.strategies) {
+			if (condition(segment)) return value * segment.distance
+		}
+		return this.fare.defaultValue * segment.distance
+	}
+
+	plus(a: number, b: number) {
+		return a + b
+	}
+
 	calculate () {
 		const price = this.segments
-			.map(it => this.fare.getValue(it) * it.distance)
-			.reduce((a, b) => a + b, 0)
+			.map(this.ofSegment)
+			.reduce(this.plus, 0)
 		return (price < this.minimumPrice) ? this.minimumPrice : price;
 	}
 }

@@ -5,13 +5,6 @@ export class Fare {
         readonly strategies: [condition: (segment: Segment) => boolean, value: number][] = [],
         readonly defaultValue = 1
     ) {}
-
-    getValue(segment: Segment): number {
-        for (const [condition, value] of this.strategies) {
-            if (condition(segment)) return value
-        }
-        return this.defaultValue
-    }
 }
 
 export const DEFAULT_FARE = new Fare(
