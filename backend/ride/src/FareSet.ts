@@ -7,7 +7,7 @@ export class FareSet {
     ) {}
 }
 
-export const DEFAULT_FARE = new FareSet(
+export const DEFAULT_FARE_SET = new FareSet(
     [
         new Fare(it => it.isOvernight() && it.isSunday(), 5),
         new Fare(it => it.isOvernight() && !it.isSunday(), 3.90),

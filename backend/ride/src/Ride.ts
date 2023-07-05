@@ -1,5 +1,5 @@
 import Segment from "./Segment";
-import {DEFAULT_FARE, FareSet} from "./FareSet";
+import {DEFAULT_FARE_SET, FareSet} from "./FareSet";
 
 function calculateRideTotalPrice(segments: Segment[], fareSet: FareSet, minimumPrice: number) {
 	let price = 0
@@ -18,7 +18,7 @@ function calculateRideTotalPrice(segments: Segment[], fareSet: FareSet, minimumP
 export default class Ride {
 	constructor (
 		readonly segments: Segment[] = [],
-		readonly fareSet: FareSet = DEFAULT_FARE,
+		readonly fareSet: FareSet = DEFAULT_FARE_SET,
 		readonly minimumPrice: number = 10
 	) {}
 
