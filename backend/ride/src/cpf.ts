@@ -1,11 +1,7 @@
 import {LazyGetter} from 'lazy-get-decorator';
 
-function reduceByFactorOf(factor: number) {
-    return (prev: number, next: number, index: number) => prev + (factor - index) * next
-}
-
 function calculateDigit(digits: number[], factor: number, previousDigit: number = 0) {
-    const digit = digits.reduce(reduceByFactorOf(factor), 0)
+    const digit = digits.reduce((prev: number, next: number, index: number) => prev + (factor - index) * next, 0)
     const rest = ((digit + 2 * previousDigit) % 11);
     return rest < 2 ? 0 : 11 - rest;
 }
