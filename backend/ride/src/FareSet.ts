@@ -1,4 +1,3 @@
-import Segment from "./Segment";
 import {Fare} from "./Fare";
 
 export class FareSet {
