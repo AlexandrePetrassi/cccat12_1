@@ -1,10 +1,10 @@
 import Segment from "./Segment";
-import {DEFAULT_FARE, Fare} from "./Fare";
+import {DEFAULT_FARE, FareSet} from "./FareSet";
 
 export default class Ride {
 	constructor (
 		readonly segments: Segment[] = [],
-		readonly fare: Fare = DEFAULT_FARE,
+		readonly fare: FareSet = DEFAULT_FARE,
 		readonly minimumPrice: number = 10
 	) {}
 
