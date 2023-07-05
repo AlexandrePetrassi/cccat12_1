@@ -12,13 +12,6 @@ export class Fare {
         }
         return this.defaultValue
     }
-
-    getTotal(segments: Segment[], minimumPrice: number = 0) {
-        const price = segments
-            .map(it => this.getValue(it) * it.distance)
-            .reduce((a, b) => a + b, 0)
-        return (price < minimumPrice) ? minimumPrice : price;
-    }
 }
 
 export const DEFAULT_FARE = new Fare(

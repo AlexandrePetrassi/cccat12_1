@@ -13,6 +13,9 @@ export default class Ride {
 	}
 
 	calculate () {
-		return this.fare.getTotal(this.segments, this.minimumPrice)
+		const price = this.segments
+			.map(it => this.fare.getValue(it) * it.distance)
+			.reduce((a, b) => a + b, 0)
+		return (price < this.minimumPrice) ? this.minimumPrice : price;
 	}
 }
