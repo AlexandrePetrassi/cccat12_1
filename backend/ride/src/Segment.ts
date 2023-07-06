@@ -1,9 +1,6 @@
-import {DEFAULT_FARE_SET, FareSet} from "./FareSet";
-import {LazyGetter} from "lazy-get-decorator";
-
 export default class Segment {
 
-	constructor (readonly distance: number, readonly date: Date, readonly fareSet: FareSet = DEFAULT_FARE_SET) {
+	constructor (readonly distance: number, readonly date: Date) {
 		if (!isValidDistance(distance)) throw new Error("Invalid distance");
 		if (!isValidDate(date)) throw new Error("Invalid date");
 	}
@@ -15,15 +12,6 @@ export default class Segment {
 	isSunday () {
 		return this.date.getDay() === 0;
 	}
-
-	@LazyGetter()
-	get value(): number {
-		return segmentValue(this.fareSet, this)
-	}
-}
-
-function segmentValue(fareSet: FareSet, segment: Segment) {
-	return fareSet.strategies.find(fare => fare.condition(segment))?.value ?? fareSet.defaultValue;
 }
 
 function isValidDistance (distance: number) {
