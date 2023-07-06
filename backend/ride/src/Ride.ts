@@ -3,7 +3,7 @@ import {DEFAULT_FARE_SET, FareSet} from "./FareSet";
 
 function calculateRideTotalPrice(segments: Segment[], fareSet: FareSet, minimumPrice: number) {
 	const price =  segments
-		.map(it => it.value * it.distance)
+		.map(segment => fareSet.fairOf(segment) * segment.distance)
 		.reduce((a, b) => a + b, 0)
 	return Math.max(minimumPrice, price);
 }
