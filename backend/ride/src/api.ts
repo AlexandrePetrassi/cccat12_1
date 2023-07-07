@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/calculate_ride", function (req, res) {
+app.post("/calculate_ride", (req, res) => {
 	try {
 		const ride = new Ride();
 		for (const segment of req.body.segments) {
