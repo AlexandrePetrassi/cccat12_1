@@ -5,10 +5,10 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/calculate_ride", (req, res) => {
+app.post("/calculate_ride", (request, res) => {
 	try {
 		const ride = new Ride();
-		for (const segment of req.body.segments) {
+		for (const segment of request.body.segments) {
 			ride.addSegment(segment.distance, new Date(segment.date));
 		}
 		const price = ride.calculate();
