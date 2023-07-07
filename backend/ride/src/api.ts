@@ -5,16 +5,16 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/calculate_ride", (request, res) => {
+app.post("/calculate_ride", (request, response) => {
 	try {
 		const ride = new Ride();
 		for (const segment of request.body.segments) {
 			ride.addSegment(segment.distance, new Date(segment.date));
 		}
 		const price = ride.calculate();
-		res.json({ price });
+		response.json({ price });
 	} catch (e) {
-		res.status(422).send(e.message);
+		response.status(422).send(e.message);
 	}
 });
 
