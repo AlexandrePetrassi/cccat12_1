@@ -1,5 +1,9 @@
 import {LazyGetter} from 'lazy-get-decorator';
 
+function cleanInput(dirtyCpf: string): number[] {
+    return dirtyCpf.replace(/\D+/g, '').split("").map(it => parseInt(it));
+}
+
 function calculateDigit(digits: number[], factor: number, previousDigit: number = 0) {
     const digit = digits.reduce((prev: number, next: number, index: number) => prev + (factor - index) * next, 0)
     const rest = ((digit + 2 * previousDigit) % 11);
@@ -25,7 +29,7 @@ export class Cpf {
 
     @LazyGetter()
     get digits(): number[] {
-        return this.raw.replace(/\D+/g, '').split("").map(it => parseInt(it));
+        return cleanInput(this.raw)
     }
 
     @LazyGetter()
