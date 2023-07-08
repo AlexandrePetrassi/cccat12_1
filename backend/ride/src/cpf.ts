@@ -35,7 +35,8 @@ export class Cpf {
 
     @LazyGetter()
     get isEveryCharTheSame(): boolean {
-        return this.digits.every(c => c === this.digits[0]);
+        const [firstDigit] = this.digits
+        return this.digits.every(digit => digit === firstDigit);
     }
 
     @LazyGetter()
